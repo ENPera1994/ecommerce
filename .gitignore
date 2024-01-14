@@ -2,4 +2,5 @@
 *.log
 
 # ignore ALL files in ANY directory named temp
-virt/
+virt\
+virt/lib/site-packages/
