@@ -1,6 +1,12 @@
 from django.db import models
 import datetime
 
+class Category(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
 class Customer(models.Model):
     firstName = models.CharField(max_length=50)
     lastName = models.CharField(max_length=50)
@@ -19,6 +25,7 @@ class Product(models.Model):
     cantFloor = models.IntegerField(default=0)
     description = models.CharField(max_length=250, default='', blank=True, null=True)
     image = models.ImageField(upload_to='uploads/product/')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     # Add Sale Stuff
     inSale = models.BooleanField(default=False)
     salePrice = models.IntegerField(default=0)
