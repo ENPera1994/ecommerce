@@ -6,19 +6,8 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Sobre Nosotros</a></li>
 
-                        {% if user.is_authenticated %}
-                          
-                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar secion</a></li>
                         
-                        {% else %}
-                        
-                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Ingresar</a></li>
-                        
-                            <li class="nav-item"><a class="nav-link" href="#!">Registrate</a></li>
-                        
-                        {% endif %}
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
@@ -29,6 +18,25 @@
                                 <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                             </ul>
                         </li>
+
+                        <!---->
+                        <!---->
+                        <!-- cambiar para pagina de acquitectos y ahi permitir loguear y registrase a arquitectos -->
+                        <!---->
+                        <!---->
+                        
+                        {% if user.is_authenticated %}
+                          
+                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar secion</a></li>
+                        
+                        {% else %}
+                        
+                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Ingresar</a></li>
+                        
+                        {% endif %}
+                        
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Contacto</a></li>
+
                     </ul>
                     <form class="d-flex">
                         <button class="btn btn-outline-dark" type="submit">

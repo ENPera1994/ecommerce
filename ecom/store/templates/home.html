@@ -34,12 +34,16 @@
                                         <div class="text-center">
                                             <!-- Product name-->
                                             <h5 class="fw-bolder">{{ product.name }}</h5>
+                                            
+                                            <br/>
+                                            {{ product.category }}
+                                            <br/><br/>
+                                            {{ product.description }}
+                                            <br><br>
                                             <!-- Product price-->
                                             <strike>${{ product.price }}</strike>
                                             &nbsp; <!-- Espacio -->
                                             ${{ product.salePrice }}
-                                            <br/><br/>
-                                            {{ product.description }}
                                         </div>
                                     </div>
                                     <!-- Product actions-->
@@ -60,8 +64,8 @@
                                         <div class="text-center">
                                             <!-- Product name-->
                                             <h5 class="fw-bolder">{{ product.name }}</h5>
-                                            <!-- Product price-->
-                                            ${{ product.price }}
+                                            <br/>
+                                            {{ product.category }}
                                             <br/><br/>
                                             {{ product.description }}
                                         </div>

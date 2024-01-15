@@ -3,6 +3,7 @@ import datetime
 
 class Category(models.Model):
     name = models.CharField(max_length=20)
+    image = image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -19,6 +20,7 @@ class Customer(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=50)
+    code = models.IntegerField(default=0)
     price = models.IntegerField(default=0)
     dimension = models.IntegerField(default=0)
     cantRoom = models.IntegerField(default=0)
@@ -33,9 +35,18 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class Face(models.Model):
+    name = models.CharField(max_length=100, default='a', blank=True)
+    image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+    
+
 class Order(models.Model):
     date = models.DateField(default=datetime.datetime.today)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    face= models.ForeignKey(Face, on_delete=models.CASCADE, default=1, blank=True, null=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE)
     adress = models.CharField(max_length=100, default='', blank=True)
     phone = models.CharField(max_length=25, default='', blank=True)
@@ -43,3 +54,17 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.customer} {self.product}'
+    
+class Architect(models.Model):
+    firstName = models.CharField(max_length=50)
+    lastName = models.CharField(max_length=50)
+    email = models.EmailField(max_length=50)
+    phone = models.CharField(max_length=20)
+    city = models.CharField(max_length=50)
+    province = models.CharField(max_length=50) 
+    country = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)
+    image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
+
+    def __str__(self):
+        return f'{self.firstName} {self.lastName}'
