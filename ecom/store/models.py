@@ -61,8 +61,8 @@ class Architect(models.Model):
     email = models.EmailField(max_length=50)
     phone = models.CharField(max_length=20)
     city = models.CharField(max_length=50)
-    province = models.CharField(max_length=50) 
-    country = models.CharField(max_length=50)
+    province = models.CharField(max_length=50, blank=True, null=True) 
+    country = models.CharField(max_length=50, blank=True, null=True)
     password = models.CharField(max_length=50)
     image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
 

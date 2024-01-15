@@ -3,8 +3,6 @@ from .models import Product
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
 
 
 
@@ -37,5 +35,3 @@ def logoutUser(request):
     messages.success(request, ("cerraste secion"))
     return redirect('home')
 
-def registerUseer(request):
-    return render(request, 'register.html', {})
