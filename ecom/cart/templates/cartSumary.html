@@ -11,6 +11,49 @@
                 </div>
             </div>
         </header>
+
+        <br>
+
+        <div class="container">
+
+            {% if cartProducts %}
+
+                {% for product in cartProducts %}
+                    
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="{{ product.image.url }}" class="img-fluid rounded-start" alt="">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.name }}</h5>
+                                    
+                                    <p class="card-text"> Codigo: {{product.id}}</p>
+                                    <p class="card-text"> Are: {{product.dimension}} m2</p>
+                                    <p class="card-text"> Cantidad de habitaciones: {{product.cantRoom}}</p>
+                                    <p class="card-text"> Cantidad de pisos: {{product.cantFloor}}</p>
+                                    <p class="card-text"> Categoria: {{product.category}}</p>
+                
+                                    <!--
+                                    <button value="{{ product.id }}" class="btn btn-secondary" id="addCart"> Agregar al carrito </button>
+                                    -->
+                                    <br>
+                                    
+                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                {% endfor %}
+            {% else %}
+                <br><br><br>
+                No hay ningun producto agregado
+            {% endif %}
+        </div>
         
         <br><br><br><br><br><br><br>
 

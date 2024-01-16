@@ -1,4 +1,4 @@
-
+from store.models import Product
 class Cart():
     def __init__(self, request):
         self.session = request.session
@@ -26,3 +26,10 @@ class Cart():
 
     def __len__(self):
         return len(self.cart)
+    
+    def getProds(self):
+        # Get IDs from cart
+        productIds =self.cart.keys()
+        # Use IDs to lookup products in database model
+        products = Product.objects.filter(id__in=productIds)
+        return products
