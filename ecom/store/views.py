@@ -1,10 +1,24 @@
 from django.shortcuts import render, redirect
-from .models import Product
-from django.contrib.auth import authenticate, login, logout
+from .models import Product, Category
 from django.contrib import messages
-from django.contrib.auth.models import User
+
+def category(request, foo):
+    # Replace Hyphens with spaces
+    foo = foo.replace('-', ' ')
+    # Grab the category from the url
+    try:
+        # Look up the category
+        category = Category.objects.get(name=foo)
+        products = Product.objects.filter(category=category)
+        return render(request, 'category.html', {'products':products, 'category':category})
+    except:
+        messages.success(request, ("Esa categoria no existe"))
+        return redirect('home')
 
 
+def product(request, pk):
+    product = Product.objects.get(id=pk)
+    return render(request, 'product.html', {'product':product})
 
 
 def home(request):
@@ -14,24 +28,3 @@ def home(request):
 
 def about(request):
    return render(request, 'about.html', {})
-
-def loginUser(request):
-    if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request,user)
-            messages.success(request, ("secion iniciada"))
-            return redirect('home')
-        else:
-            messages.success(request, ("Error! por favor intente otra vez"))
-            return redirect('login')
-    else:
-        return render(request, 'login.html', {})
-
-def logoutUser(request):
-    logout(request)
-    messages.success(request, ("cerraste secion"))
-    return redirect('home')
-

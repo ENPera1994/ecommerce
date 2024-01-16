@@ -10,31 +10,24 @@
                         
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Shop</a>
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Categorias</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#!">All Products</a></li>
+                                
+                                <li><a class="dropdown-item" href="{% url 'home' %}">Todas</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="#!">Popular Items</a></li>
-                                <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'CASA' %}"> Casa </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'DUPLEX' %}"> Duplex </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'TRIPLEX' %}"> Triplex </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'MANSION' %}"> Mansion </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'CHALET' %}"> Chalet </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'CABAÑA' %}"> Cabaña </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'PEQUEÑA' %}"> Pequeña </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'ESQUINA' %}"> Esquina </a></li>
+                                <li><a class="dropdown-item" href="{% url 'category' 'EDIFICIO' %}"> Edificio </a></li>
                             </ul>
                         </li>
 
-                        <!---->
-                        <!---->
-                        <!-- cambiar para pagina de acquitectos y ahi permitir loguear y registrase a arquitectos -->
-                        <!---->
-                        <!---->
-                        
-                        {% if user.is_authenticated %}
-                          
-                            <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Cerrar secion</a></li>
-                        
-                        {% else %}
-                        
-                            <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Ingresar</a></li>
-                        
-                        {% endif %}
-                        
+                    
                         <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">Contacto</a></li>
 
                     </ul>
