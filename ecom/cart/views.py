@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-def cartSumary(request):
+def cartSummary(request):
     return render(request, 'cartSumary.html', {})
 
 
