@@ -18,6 +18,9 @@
                     <p class="card-text"> Cantidad de pisos: {{product.cantFloor}}</p>
                     <p class="card-text"> Categoria: {{product.category}}</p>
 
+
+                    <button value="{{ product.id }}" class="btn btn-secondary" id="addCart"> Agregar al carrito </button>
+                    <br>
                     <a href="{%url 'home'%}" class="btn btn-secondary">Inicio</a>
 
                 </div>
@@ -25,5 +28,31 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Check if botton pressed
+    $(document).on('click', '#addCart', function(e){
+        e.preventDefault();
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cartAdd" %}',
+            data: {
+                productId: $('#addCart').val(),
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                action: 'post'
+            },
+
+            success: function(json){
+                console.log(json)
+            },
+
+            error: function(hhr, errmsg, err){
+                
+            }
+
+        });
+
+    })
+</script>
 
 {% endblock %}
