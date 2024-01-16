@@ -38,6 +38,7 @@ class Product(models.Model):
 class Face(models.Model):
     name = models.CharField(max_length=100, default='a', blank=True)
     image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.name
