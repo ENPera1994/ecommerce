@@ -33,6 +33,3 @@ def cartAdd(request):
 
 def cartDelete(request):
     pass
-
-def cartUpdate(request):
-    pass
