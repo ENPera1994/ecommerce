@@ -34,9 +34,9 @@
                                     <p class="card-text"> Cantidad de pisos: {{product.cantFloor}}</p>
                                     <p class="card-text"> Categoria: {{product.category}}</p>
                 
-                                    <!--
-                                    <button value="{{ product.id }}" class="btn btn-secondary" id="addCart"> Agregar al carrito </button>
-                                    -->
+                                    
+                                    <button type="button" data-index="{{ product.id }}" class="btn btn-danger deleteProduct"> Eliminar del carrito </button>
+                                    
                                     <br>
                                     
                 
@@ -55,5 +55,33 @@
         </div>
         
         <br><br><br><br><br><br><br>
+
+<script>
+// Delete Item From Cart
+$(document).on('click', '.deleteProduct', function(e){
+    e.preventDefault();
+
+    $.ajax({
+    type: 'POST',
+    url: '{% url "cartDelete" %}',
+    data: {
+      productId: $(this).data('index'),
+      csrfmiddlewaretoken: '{{ csrf_token }}',
+      action: 'post'
+    },
+    success: function(json){
+        location.reload();
+    },
+
+    error: function(xhr, errmsg, err){
+
+    }
+
+
+    });
+
+})
+
+</script>
 
 {% endblock %}

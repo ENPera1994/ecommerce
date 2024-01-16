@@ -33,3 +33,12 @@ class Cart():
         # Use IDs to lookup products in database model
         products = Product.objects.filter(id__in=productIds)
         return products
+    
+    def delete(self, product):
+        productId = str(product)
+        # Delete fron cart
+        if productId in self.cart:
+            del self.cart[productId]
+
+        self.session.modified = True
+
