@@ -11,6 +11,35 @@
                 </div>
             </div>
         </header>
+
+        <!-- listar_planos.html -->
+        <form method="get" action="{% url 'planos' %}">  
+            <label for="categoria">Categoría:</label>
+            <select name="categoria">
+                <option value="">Todas</option>
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+    
+            
+            <!--
+            <label for="ancho_terreno">Ancho del terreno:</label>
+            <input type="number" name="ancho_terreno">
+            -->
+
+            <label for="metros_cuadrados">Metros cuadrados:</label>
+            <input type="number" name="metros_cuadrados">
+
+            <label for="dormitorios">Dormitorios:</label>
+            <input type="number" name="dormitorios">
+
+            <label for="pisos">Pisos:</label>
+            <input type="number" name="pisos">
+
+            <input type="submit" value="Filtrar">
+        </form>
+
         <!-- Section-->
         <section class="py-5">
             <div class="container px-4 px-lg-5 mt-5">

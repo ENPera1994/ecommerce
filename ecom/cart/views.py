@@ -51,8 +51,8 @@ def cartDelete(request):
         return response
 
 
-mp = mercadopago.MP(settings.MERCADO_PAGO_ACCESS_TOKEN)
-
+#mp = mercadopago.MP(settings.MERCADO_PAGO_ACCESS_TOKEN)
+'''
 def procesar_pago(request):
     if request.method == 'POST':
         # Lógica para crear un pago en Mercado Pago
@@ -71,3 +71,4 @@ def procesar_pago(request):
         return render(request, 'procesar_pago_mp.html', {'preference_id': preference_result['response']['id']})
 
     return render(request, 'formulario_pago.html')
+'''

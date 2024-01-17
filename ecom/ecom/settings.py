@@ -136,5 +136,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Token of Mercado Pago acount
 
-MERCADO_PAGO_ACCESS_TOKEN = 'tu_token_de_acceso'
+#MERCADO_PAGO_ACCESS_TOKEN = 'tu_token_de_acceso'
 

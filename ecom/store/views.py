@@ -31,11 +31,36 @@ def about(request):
 
 
 def planos(request):
-    products = Product.objects.all()
-    return render(request, 'planos.html', {'products':products})
+    categoria_filtro = request.GET.get('categoria', '')
+    #ancho_terreno_filtro = request.GET.get('ancho_terreno', '')
+    metros_cuadrados_filtro = request.GET.get('metros_cuadrados', '')
+    dormitorios_filtro = request.GET.get('dormitorios', '')
+    pisos_filtro = request.GET.get('pisos', '')
 
-'''
-def fachadas(request):
-    faces = Face.objects.all()
-    return render(request, 'fachadas.html', {'faces':faces})
-    '''
+    products = Product.objects.all()
+
+    if categoria_filtro:
+        products = products.filter(category=categoria_filtro)
+    
+    #if ancho_terreno_filtro:
+    #    products = products.filter(dimension__gte=int(ancho_terreno_filtro))
+
+    if metros_cuadrados_filtro:
+        products = products.filter(dimension=int(metros_cuadrados_filtro))
+
+    if dormitorios_filtro:
+        products = products.filter(cantRoom=int(dormitorios_filtro))
+
+    if pisos_filtro:
+        products = products.filter(cantFloor=int(pisos_filtro))
+
+    categories = Category.objects.all()
+    return render(request, 'planos.html', {'products': products, 'categories': categories})
+    
+    #products = Product.objects.all()
+    #eturn render(request, 'planos.html', {'products':products})
+
+
+#def fachadas(request):
+#    faces = Face.objects.all()
+#    return render(request, 'fachadas.html', {'faces':faces})

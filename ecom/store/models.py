@@ -28,8 +28,8 @@ class Product(models.Model):
     image = models.ImageField(upload_to='uploads/product/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
     # Add Sale Stuff
-    inSale = models.BooleanField(default=False)
-    salePrice = models.IntegerField(default=0)
+    #inSale = models.BooleanField(default=False)
+    #salePrice = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
