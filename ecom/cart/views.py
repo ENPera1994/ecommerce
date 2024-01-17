@@ -8,7 +8,8 @@ from django.contrib import messages
 def cartSummary(request):
     cart = Cart(request)
     cartProducts = cart.getProds
-    return render(request, 'cartSumary.html', {'cartProducts':cartProducts})
+    totals = cart.cartTotal()
+    return render(request, 'cartSumary.html', {'cartProducts':cartProducts, 'totals':totals})
 
 
 def cartAdd(request):

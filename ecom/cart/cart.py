@@ -24,6 +24,18 @@ class Cart():
         
         self.session.modified = True
 
+    def cartTotal(self):
+        # Get product IDs
+        productIds = self.cart.keys()
+        # lookup those keys in products database model
+        products = Product.objects.filter(id__in=productIds)
+        total = 0
+        
+        for product in products:
+            total = total + product.price
+        
+        return total
+
     def __len__(self):
         return len(self.cart)
     

@@ -21,7 +21,7 @@ class Customer(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=50)
     code = models.IntegerField(default=0)
-    price = models.IntegerField(default=0)
+    price = models.IntegerField(default=10)
     dimension = models.IntegerField(default=0)
     cantRoom = models.IntegerField(default=0)
     cantFloor = models.IntegerField(default=0)
