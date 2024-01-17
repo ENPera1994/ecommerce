@@ -32,6 +32,7 @@ def cartAdd(request):
 
         # Return response
         response = JsonResponse({'qty': cartQuantity})
+        messages.success(request, ("Agregado al Carrito"))
         return response
 
 def cartDelete(request):
@@ -43,5 +44,5 @@ def cartDelete(request):
         cart.delete(product=productId)
         response = JsonResponse({'product':productId})
         #return redirect('cart_summary')
-        messages.success(request, ("Item Deleted From Shopping Cart..."))
+        messages.success(request, ("Eliminado del carrito"))
         return response

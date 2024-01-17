@@ -21,9 +21,17 @@
     <body>
         <!-- Navigation-->
         {% include 'navbar.html' %}
+        {% if messages %}
+            {% for message in messages %} 
+            <br>   
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <br>
+            {% endfor %}
+        {% endif %}
 
-        
-        
         {% block content %}
         {% endblock %}
 
