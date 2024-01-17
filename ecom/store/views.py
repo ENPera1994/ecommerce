@@ -22,9 +22,20 @@ def product(request, pk):
 
 
 def home(request):
-    products = Product.objects.all()
+    products = Product.objects.all()[:4]
     return render(request, 'home.html', {'products':products})
 
 
 def about(request):
    return render(request, 'about.html', {})
+
+
+def planos(request):
+    products = Product.objects.all()
+    return render(request, 'planos.html', {'products':products})
+
+'''
+def fachadas(request):
+    faces = Face.objects.all()
+    return render(request, 'fachadas.html', {'faces':faces})
+    '''
