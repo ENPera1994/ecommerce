@@ -12,8 +12,8 @@
             </div>
         </header>
 
-        <!-- listar_planos.html -->
-        <form method="get" action="{% url 'planos' %}">  
+        <!-- listar_fachadas.html -->
+        <form method="get" action="{% url 'fachadas' %}">  
             <label for="categoria">Categoría:</label>
             <select name="categoria">
                 <option value="">Todas</option>
@@ -21,21 +21,6 @@
                     <option value="{{ category.id }}">{{ category.name }}</option>
                 {% endfor %}
             </select>
-    
-            
-            
-            <label for="ancho_terreno">Ancho del terreno:</label>
-            <input type="number" name="ancho_terreno">
-
-            <label for="metros_cuadrados">Metros cuadrados:</label>
-            <input type="number" name="metros_cuadrados">
-
-            <label for="dormitorios">Dormitorios:</label>
-            <input type="number" name="dormitorios">
-
-            <label for="pisos">Pisos:</label>
-            <input type="number" name="pisos">
-
             <input type="submit" value="Filtrar">
         </form>
 
@@ -45,17 +30,17 @@
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
                     
 
-                    {% for product in products %}
+                    {% for face in faces %}
 
                         <div class="col mb-5">
                             <div class="card h-100">
                                 <!-- Product image-->
-                                <img class="card-img-top" src="{{ product.image.url }}" alt="..." />
+                                <img class="card-img-top" src="{{ face.image.url }}" alt="..." />
                                 <br>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                     <br>
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'product' product.id %}">Ver Plano</a></div>
+                                    <button value="{{ face.id }}" class="btn btn-secondary" id="addCart"> Agregar al carrito </button>
                                 </div>
                             </div>
                         </div>
@@ -66,5 +51,31 @@
                 </div>
             </div>
         </section>
-       
+        <script>
+            // Check if botton pressed
+            $(document).on('click', '#addCart', function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: '{% url "cartAdd" %}',
+                    data: {
+                        productId: $('#addCart').val(),
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        action: 'post'
+                    },
+        
+                    success: function(json){
+                        //console.log(json)
+                        document.getElementById('cartquantity').textContent = json.qty
+                        location.reload();
+                    },
+        
+                    error: function(hhr, errmsg, err){
+                        
+                    }
+        
+                });
+        
+            })
+        </script>   
 {% endblock %}

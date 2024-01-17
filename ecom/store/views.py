@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product, Category
+from .models import Product, Category, Face
 from django.contrib import messages
 
 def category(request, foo):
@@ -32,7 +32,7 @@ def about(request):
 
 def planos(request):
     categoria_filtro = request.GET.get('categoria', '')
-    #ancho_terreno_filtro = request.GET.get('ancho_terreno', '')
+    ancho_terreno_filtro = request.GET.get('ancho_terreno', '')
     metros_cuadrados_filtro = request.GET.get('metros_cuadrados', '')
     dormitorios_filtro = request.GET.get('dormitorios', '')
     pisos_filtro = request.GET.get('pisos', '')
@@ -42,8 +42,8 @@ def planos(request):
     if categoria_filtro:
         products = products.filter(category=categoria_filtro)
     
-    #if ancho_terreno_filtro:
-    #    products = products.filter(dimension__gte=int(ancho_terreno_filtro))
+    if ancho_terreno_filtro:
+        products = products.filter(width=int(ancho_terreno_filtro))
 
     if metros_cuadrados_filtro:
         products = products.filter(dimension=int(metros_cuadrados_filtro))
@@ -56,11 +56,12 @@ def planos(request):
 
     categories = Category.objects.all()
     return render(request, 'planos.html', {'products': products, 'categories': categories})
-    
-    #products = Product.objects.all()
-    #eturn render(request, 'planos.html', {'products':products})
 
 
-#def fachadas(request):
-#    faces = Face.objects.all()
-#    return render(request, 'fachadas.html', {'faces':faces})
+def fachadas(request):
+    categoria_filtro = request.GET.get('categoria', '')
+    faces = Face.objects.all()
+    if categoria_filtro:
+        faces = faces.filter(category=categoria_filtro)
+    categories = Category.objects.all()
+    return render(request, 'fachadas.html', {'faces':faces, 'categories': categories})

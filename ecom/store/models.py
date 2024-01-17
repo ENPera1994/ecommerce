@@ -27,9 +27,7 @@ class Product(models.Model):
     description = models.CharField(max_length=250, default='', blank=True, null=True)
     image = models.ImageField(upload_to='uploads/product/')
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
-    # Add Sale Stuff
-    #inSale = models.BooleanField(default=False)
-    #salePrice = models.IntegerField(default=0)
+    width = models.IntegerField(default=1)
 
     def __str__(self):
         return self.name
@@ -38,7 +36,7 @@ class Face(models.Model):
     name = models.CharField(max_length=100, default='a', blank=True)
     image = models.ImageField(upload_to='uploads/product/', blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, default=1)
-
+    price = models.IntegerField(default=0)
     def __str__(self):
         return self.name
     
