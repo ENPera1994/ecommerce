@@ -19,7 +19,7 @@ def about(request):
    return render(request, 'about.html', {})
 
 
-def planos(request):
+def products(request):
     categoria_filtro = request.GET.get('categoria', '')
     ancho_terreno_filtro = request.GET.get('ancho_terreno', '')
     metros_cuadrados_filtro = request.GET.get('metros_cuadrados', '')
@@ -44,7 +44,7 @@ def planos(request):
         products = products.filter(cantFloor=int(pisos_filtro))
 
     categories = Category.objects.all()
-    return render(request, 'planos.html', {'products': products, 'categories': categories})
+    return render(request, 'products.html', {'products': products, 'categories': categories})
 
 
 def fachadas(request):
