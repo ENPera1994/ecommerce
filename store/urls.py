@@ -7,4 +7,5 @@ urlpatterns = [
     path('product/<int:pk>', views.product, name='product'),
     path('products/', views.products, name='products'),
     path('fachadas/', views.fachadas, name='fachadas'),
+    path('architects/', views.architects, name='architects'),
 ]

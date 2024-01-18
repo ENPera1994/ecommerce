@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product, Category, Face
+from .models import Product, Category, Face, Architect
 from django.contrib import messages
 
 
@@ -54,3 +54,7 @@ def fachadas(request):
         faces = faces.filter(category=categoria_filtro)
     categories = Category.objects.all()
     return render(request, 'fachadas.html', {'faces':faces, 'categories': categories})
+
+def architects(request, pk):
+    architects = Architect.objects.all()
+    return render(request, 'architecs.html', {'architects':architects})
